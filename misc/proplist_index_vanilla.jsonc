@@ -1,5 +1,3 @@
 [
-	"url_to_vanilla_proplist_one",
-	"url_to_vanilla_proplist_two",
-	"url_to_vanilla_proplist_three"
+	"https://raw.githubusercontent.com/Puntherline/pun_propinfo/main/misc/proplists/puntherlines_vanilla_proplist.jsonc"
 ]
