@@ -1,8 +1,8 @@
 {
-	"script": "0.1",
+	"script": "1.0",
 	"proplist": {
-		"vanilla": "0.1",
-		"safe": "0.1",
-		"all": "0.1"
+		"vanilla": "1.0",
+		"safe": "1.0",
+		"all": "1.0"
 	}
 }
