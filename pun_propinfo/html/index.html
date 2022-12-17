@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Puntherline's Prop Info UI</title>
+		<link rel="stylesheet" href="stylesheet.css">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+
+		<!-- Menu to access settings -->
+		<div id="menu" style="display: none;">
+			<div id="menu_top">
+				<h1>Puntherline's Prop Info</h1><hr>
+			</div>
+
+			<div id="menu_center">
+
+				<!-- ID Gun -->
+				<div class="menu_item toggle" id="idgun">
+					<div class="setting_indicator disabled"></div>
+					<div class="setting_info">
+						<h2>ID Gun</h2>
+						<p>
+							Aim a gun at an entity or object to get informations about it
+							on screen.
+						</p>
+						<div class="setting_options" style="display: none;">
+							<hr>
+							<input type="checkbox" id="idgun_draw_box_around_object"><label for="idgun_draw_box_around_object">Draw box around object</label><br><br>
+
+							<input type="number" min="0" max="255" value="0" size="3" id="idgun_draw_box_around_object_r">
+							<input type="number" min="0" max="255" value="0" size="3" id="idgun_draw_box_around_object_g">
+							<input type="number" min="0" max="255" value="0" size="3" id="idgun_draw_box_around_object_b">
+							<input type="number" min="0" max="255" value="0" size="3" id="idgun_draw_box_around_object_a">
+							Color of the box in RGBA<br><br>
+
+							<input type="checkbox" id="idgun_draw_text_hash"><label for="idgun_draw_text_hash">Draw selected entity hash</label><br><br>
+							<input type="checkbox" id="idgun_draw_text_name"><label for="idgun_draw_text_name">Draw selected entity name</label><br><br>
+							<input type="checkbox" id="idgun_draw_text_pos"><label for="idgun_draw_text_pos">Draw selected entity position</label><br><br>
+							<input type="checkbox" id="idgun_draw_text_rot"><label for="idgun_draw_text_rot">Draw selected entity rotation</label><br><br>
+
+							<input type="number" id="idgun_text_scale" min="0.00" max="1.00" value="0.00" size="3" step="0.01"><label for="idgun_text_scale"> UI Text Scale</label><br><br>
+							<input type="number" id="idgun_text_pos_x" min="0.00" max="1.00" value="0.00" size="3" step="0.01"><label for="idgun_text_pos_x"> UI Text Horizontal Position</label><br><br>
+							<input type="number" id="idgun_text_pos_y" min="0.00" max="1.00" value="0.00" size="3" step="0.01"><label for="idgun_text_pos_y"> UI Text Vertical Position</label><br><br>
+							<input type="checkbox" id="idgun_text_align_right"><label for="idgun_text_align_right"> Align UI text to the right</label>
+						</div>
+					</div>
+				</div>
+
+				<!-- Ped Info -->
+				<div class="menu_item toggle" id="all_peds_info">
+					<div class="setting_indicator disabled"></div>
+					<div class="setting_info">
+						<h2>Ped Info</h2>
+						<p>
+							Display real time info on all peds found in your area.
+						</p>
+						<div class="setting_options" style="display: none;">
+							<hr>
+							<input type="checkbox" id="all_peds_info_boxes"><label for="all_peds_info_boxes">Draw boxes around peds</label><br><br>
+							<input type="number" min="0" max="255" value="0" size="3" id="all_peds_info_r">
+							<input type="number" min="0" max="255" value="0" size="3" id="all_peds_info_g">
+							<input type="number" min="0" max="255" value="0" size="3" id="all_peds_info_b">
+							<input type="number" min="0" max="255" value="0" size="3" id="all_peds_info_a">
+							Color of the box in RGBA<br><br>
+							<input type="checkbox" id="all_peds_info_text_hash"><label for="all_peds_info_text_hash">Draw ped hash</label><br><br>
+							<input type="checkbox" id="all_peds_info_text_name"><label for="all_peds_info_text_name">Draw ped name</label><br><br>
+							<input type="checkbox" id="all_peds_info_text_pos"><label for="all_peds_info_text_pos">Draw ped position</label><br><br>
+							<input type="checkbox" id="all_peds_info_text_rot"><label for="all_peds_info_text_rot">Draw ped rotation</label>
+						</div>
+					</div>
+				</div>
+
+				<!-- Vehicle Info -->
+				<div class="menu_item toggle" id="all_vehicles_info">
+					<div class="setting_indicator disabled"></div>
+					<div class="setting_info">
+						<h2>Vehicle Info</h2>
+						<p>
+							Display real time info on all vehicles found in your area.
+						</p>
+						<div class="setting_options" style="display: none;">
+							<hr>
+							<input type="checkbox" id="all_vehicles_info_boxes"><label for="all_vehicles_info_boxes">Draw boxes around vehicles</label><br><br>
+							<input type="number" min="0" max="255" value="0" size="3" id="all_vehicles_info_r">
+							<input type="number" min="0" max="255" value="0" size="3" id="all_vehicles_info_g">
+							<input type="number" min="0" max="255" value="0" size="3" id="all_vehicles_info_b">
+							<input type="number" min="0" max="255" value="0" size="3" id="all_vehicles_info_a">
+							Color of the box in RGBA<br><br>
+							<input type="checkbox" id="all_vehicles_info_text_hash"><label for="all_vehicles_info_text_hash">Draw vehicle hash</label><br><br>
+							<input type="checkbox" id="all_vehicles_info_text_name"><label for="all_vehicles_info_text_name">Draw vehicle name</label><br><br>
+							<input type="checkbox" id="all_vehicles_info_text_pos"><label for="all_vehicles_info_text_pos">Draw vehicle position</label><br><br>
+							<input type="checkbox" id="all_vehicles_info_text_rot"><label for="all_vehicles_info_text_rot">Draw vehicle rotation</label>
+						</div>
+					</div>
+				</div>
+
+				<!-- Object Info -->
+				<div class="menu_item toggle" id="all_objects_info">
+					<div class="setting_indicator disabled"></div>
+					<div class="setting_info">
+						<h2>Object Info</h2>
+						<p>
+							Display real time info on all objects found in your area.
+						</p>
+						<div class="setting_options" style="display: none;">
+							<hr>
+							<input type="checkbox" id="all_objects_info_boxes"><label for="all_objects_info_boxes">Draw boxes around objects</label><br><br>
+							<input type="number" min="0" max="255" value="0" size="3" id="all_objects_info_r">
+							<input type="number" min="0" max="255" value="0" size="3" id="all_objects_info_g">
+							<input type="number" min="0" max="255" value="0" size="3" id="all_objects_info_b">
+							<input type="number" min="0" max="255" value="0" size="3" id="all_objects_info_a">
+							Color of the box in RGBA<br><br>
+							<input type="checkbox" id="all_objects_info_text_hash"><label for="all_objects_info_text_hash">Draw object hash</label><br><br>
+							<input type="checkbox" id="all_objects_info_text_name"><label for="all_objects_info_text_name">Draw object name</label><br><br>
+							<input type="checkbox" id="all_objects_info_text_pos"><label for="all_objects_info_text_pos">Draw object position</label><br><br>
+							<input type="checkbox" id="all_objects_info_text_rot"><label for="all_objects_info_text_rot">Draw object rotation</label>
+						</div>
+					</div>
+				</div>
+
+				<!-- Proplist Update -->
+				<div class="menu_item admin" id="update_proplist">
+					<div class="setting_indicator"></div>
+					<div class="setting_info">
+						<h2>Update Proplist</h2>
+						<p>
+							Update the proplist over the internet. This can only be undone
+							by someone with server file access. For the update to take
+							effect, this resource will have to be restarted.
+						</p>
+					</div>
+				</div>
+
+				<!-- Advanced Options -->
+				<div class="menu_item">
+					<div class="setting_indicator"></div>
+					<div class="setting_info">
+						<h2 style="cursor: default;">Advanced Options</h2><br>
+
+						<hr><h3>Text sizes and positions</h3><br>
+
+						<!-- Text size at min distance / max size -->
+						<input type="number" id="adv_draw_text_max_size" min="0.00" max="1.00" value="0.00" size="3" step="0.01"><label for="adv_draw_text_max_size"> Near Text Size</label><br>
+						<span class="secondary_text">Text size when close to the player.</span><br><br>
+
+						<!-- Text size at max distance / min size -->
+						<input type="number" id="adv_draw_text_min_size" min="0.00" max="1.00" value="0.00" size="3" step="0.01"><label for="adv_draw_text_min_size"> Far Text Size</label><br>
+						<span class="secondary_text">Text size when far from the player.</span><br><br>
+
+						<hr><h3>Render distances</h3><br>
+
+						<!-- Box Render Distance -->
+						<input type="number" id="adv_draw_box_distance" min="0" max="1000" value="0" size="4"><label for="adv_draw_box_distance"> Box Render Distance</label><br>
+						<span class="secondary_text">Max render distance to draw boxes at.</span><br><br>
+
+						<!-- Text Render Distance -->
+						<input type="number" id="adv_draw_text_distance" min="0" max="1000" value="0" size="4"><label for="adv_draw_text_distance"> Text Render Distance</label><br>
+						<span class="secondary_text">Max render distance to draw text at.</span><br><br>
+
+						<hr><h3>Timers</h3><br>
+
+						<!-- Idle Timer -->
+						<input type="number" id="adv_idle_msec" min="0" max="1000" value="0" size="4"><label for="adv_idle_msec"> ms Idle Timer</label><br>
+						<span class="secondary_text">Pause between checking for toggled settings.</span><br><br>
+
+						<!-- ID Gun Get Object -->
+						<input type="number" id="adv_idgun_get_object_msec" min="0" max="1000" value="0" size="4"><label for="adv_idgun_get_object_msec"> ms ID Gun Get Object</label><br>
+						<span class="secondary_text">Pause between checking for what object you're aiming at.</span><br><br>
+
+						<!-- ID Gun UI Update -->
+						<input type="number" id="adv_idgun_ui_update_msec" min="0" max="1000" value="0" size="4"><label for="adv_idgun_ui_update_msec"> ms ID Gun UI Update</label><br>
+						<span class="secondary_text">Pause between updating the on-screen UI for the ID Gun.</span><br><br>
+
+						<!-- Get Objects -->
+						<input type="number" id="adv_boxes_get_pause_msec" min="0" max="1000" value="0" size="4"><label for="adv_boxes_get_pause_msec"> ms Get Ped/Vehicle/Object list</label><br>
+						<span class="secondary_text">Pause after getting list of nearby peds, vehicles and objects.</span><br><br>
+
+						<!-- Boxes Position Update -->
+						<input type="number" id="adv_boxes_data_update_msec" min="0" max="1000" value="0" size="4"><label for="adv_boxes_data_update_msec"> ms Boxes Position Update</label><br>
+						<span class="secondary_text">Pause between updating boxes position.</span><br><br>
+
+						<!-- Drawing Boxes -->
+						<input type="number" id="adv_boxes_draw_boxes_msec" min="0" max="1000" value="0" size="4"><label for="adv_boxes_draw_boxes_msec"> ms Drawing Boxes</label><br>
+						<span class="secondary_text">EPILEPSY WARNING: Flashing lights if too high! Pause between drawing the boxes. Recommended to leave at 0, no performance gain.</span><br><br>
+
+						<!-- Drawing Text -->
+						<input type="number" id="adv_text_draw_text_msec" min="0" max="1000" value="0" size="4"><label for="adv_text_draw_text_msec"> ms Drawing Text</label><br>
+						<span class="secondary_text">EPILEPSY WARNING: Flashing text if too high! Pause between drawing the text. Recommended to leave at 0, no performance gain.</span><br><br>
+
+						<!-- Wait during for success loop -->
+						<input type="number" id="adv_update_entities_wait_msec" min="-1" max="1000" value="0" size="4"><label for="adv_update_entities_wait_msec"> ms Wait for Find loops</label><br>
+						<span class="secondary_text">Pause between finding each ped, vehicle and object. -1 is off, 0-1000 is on. Recommended is 0. 1000 means it will take 20 seconds to find 20 peds.</span><br><br>
+
+						<!-- Reset all settings button -->
+						<button id="adv_reset_all_settings">Reset All Settings</button><br>
+						<span class="secondary_text">This will only reset your own settings, not server settings.</span><br><br>
+					</div>
+				</div>
+			</div>
+
+			<div id="menu_bottom">
+				<h2 id="close_button">Close</h2>
+			</div>
+		</div>
+		<script src="javascript.js"></script>
+	</body>
+</html>
