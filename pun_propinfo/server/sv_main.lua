@@ -44,7 +44,7 @@ function updateProplist(source, vehicle_list)
 
 	-- Get online proplist depending on config selection
 	PerformHttpRequest(
-		"https://raw.githubusercontent.com/Puntherline/pun_propinfo/main/misc/proplist_index_" .. config.proplist_type .. ".jsonc",
+		"https://raw.githubusercontent.com/Puntherline/pun_propinfo/main/misc/proplist_index_" .. config.proplist_type .. ".json",
 		function(http_code, result_data, result_headers)
 
 			-- Status code isn't OK, abort
@@ -56,7 +56,7 @@ function updateProplist(source, vehicle_list)
 				return
 			end
 
-			debugPrint("Successfully fetched https://raw.githubusercontent.com/Puntherline/pun_propinfo/main/misc/proplist_index_" .. config.proplist_type .. ".jsonc")
+			debugPrint("Successfully fetched https://raw.githubusercontent.com/Puntherline/pun_propinfo/main/misc/proplist_index_" .. config.proplist_type .. ".json")
 
 			-- Decode data
 			local decoded_result = json.decode(result_data)
@@ -118,8 +118,15 @@ function updateProplist(source, vehicle_list)
 							-- Iterate every line
 							for line in string.gmatch(result_data_2, "[^\r\n]+") do
 
-								-- Make sure that there are no common symbols in the line
-								if not line:find("`") and not line:find("\"") and not line:find("+") then
+								-- Make sure that the line is safe to create code with
+								if (
+									not line:find("`") and
+									not line:find("\"") and
+									not line:find("+") and
+									not line:find("}") and
+									not line:find("=") and
+									not line:find(",")
+								) then
 									if props_to_skip[line] == nil then
 										main_file:write("	[tostring(`" .. line .. "`)] = \"" .. line .. "\",\n")
 										props_to_skip[line] = true
@@ -176,7 +183,7 @@ function updateProplist(source, vehicle_list)
 			debugPrint("Fetching proplist version we just installed")
 			local new_proplist_version = ""
 			PerformHttpRequest(
-				"https://raw.githubusercontent.com/Puntherline/pun_propinfo/main/misc/version.jsonc",
+				"https://raw.githubusercontent.com/Puntherline/pun_propinfo/main/misc/version.json",
 				function(http_code_2, result_data_2, result_headers_2)
 
 					-- Status code isn't OK, abort
@@ -197,8 +204,8 @@ function updateProplist(source, vehicle_list)
 				Wait(0)
 			end
 
-			-- Updating version.jsonc
-			local version_file_path = GetResourcePath(GetCurrentResourceName()) .. "/server/version.jsonc"
+			-- Updating version.json
+			local version_file_path = GetResourcePath(GetCurrentResourceName()) .. "/server/version.json"
 			local version_file = io.open(version_file_path, "r")
 			local decoded_version_file_content = json.decode(version_file:read("*all"))
 			version_file:close()
@@ -213,7 +220,7 @@ function updateProplist(source, vehicle_list)
 			version_file:write(json.encode(updated_version_file_content))
 			version_file:close()
 
-			debugPrint("Successfully updated local version.jsonc file!")
+			debugPrint("Successfully updated local version.json file!")
 
 			currently_updating = false
 		end
@@ -227,17 +234,17 @@ CreateThread(function()
 	debugPrint("pun_propinfo is starting up.")
 
 	-- Get currently installed script and proplist version as well as proplist type
-	local file_path = GetResourcePath("pun_propinfo") .. "/server/version.jsonc"
+	local file_path = GetResourcePath("pun_propinfo") .. "/server/version.json"
 	local version_file = io.open(file_path, "r")
 	if version_file == nil then
-		print("^1[Warn]: ^7pun_propinfo/server/version.jsonc not found, unable to do version and proplist checks!")
+		print("^1[Warn]: ^7pun_propinfo/server/version.json not found, unable to do version and proplist checks!")
 		print("To fix this, go to ^0https://github.com/Puntherline/pun_propinfo/releases ^7and download the latest release.")
 		return
 	end
 	local current_version = json.decode(version_file:read("*all"))
 	version_file:close()
 
-	-- Prevent modified version.jsonc to screw up checks
+	-- Prevent modified version.json to screw up checks
 	local script_version = current_version.script or "unknown"
 	local proplist_type = current_version.proplist_type or "unknown"
 	local proplist_version = current_version.proplist_version or "unknown"
@@ -266,9 +273,9 @@ CreateThread(function()
 				if checked_today == false then
 					checked_today = true
 
-					-- Fetch online version.jsonc
+					-- Fetch online version.json
 					PerformHttpRequest(
-						"https://raw.githubusercontent.com/Puntherline/pun_propinfo/main/misc/version.jsonc",
+						"https://raw.githubusercontent.com/Puntherline/pun_propinfo/main/misc/version.json",
 						function(http_code, result_data, result_headers)
 
 							-- Status code isn't OK, abort
